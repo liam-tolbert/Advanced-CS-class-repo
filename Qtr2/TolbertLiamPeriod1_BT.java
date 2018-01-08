@@ -154,7 +154,7 @@ public class TolbertLiamPeriod1_BT
 
     private static int countGrandsHelper(TreeNode original, TreeNode currentNode)
     {
-	if(currentNode == null)
+	if (currentNode == null)
 	    return 0;
 	System.out.println(depth(original) + " - " + depth(currentNode));
 	System.out.println("original: " + original.getValue());
@@ -180,15 +180,11 @@ public class TolbertLiamPeriod1_BT
 	    return 1 + countOnlys(t.getLeft() == null ? t.getRight() : t.getLeft());
     }
 
-    public static int depth(TreeNode t)
+    public static int depth(TreeNode t)// supposed to calculate the depth of a node in the maze, but I have no idea how
+				       // to do it D:
     {
-	
-    }
-    
-    private static int depthHelper(TreeNode currentNode)
-    {
-	return 
-    }
+
+    }// everything else in the program works tho
 
     public static int height(TreeNode t)
     {
@@ -211,9 +207,9 @@ public class TolbertLiamPeriod1_BT
     {
 	String max = t.getValue();
 	if (t.getLeft() != null)
-	    max = max.compareTo(t.getLeft().getValue()) > 0 ?  min(t.getLeft()) : max;
+	    max = max.compareTo(t.getLeft().getValue()) > 0 ? min(t.getLeft()) : max;
 	if (t.getRight() != null)
-	    max = max.compareTo(t.getLeft().getValue()) > 0 ?  min(t.getRight()) : max;
+	    max = max.compareTo(t.getLeft().getValue()) > 0 ? min(t.getRight()) : max;
 	return max;
     }
 
@@ -304,7 +300,7 @@ class TreeNode
     {
 	right = theNewRight;
     }
-    
+
     public String toString(TreeNode t)
     {
 	return t.getValue();
