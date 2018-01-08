@@ -148,26 +148,22 @@ public class TolbertLiamPeriod1_BT
 
     public static int countGrands(TreeNode t)
     {
-	return countGrandsHelper(t, t);// the countgrandshelper method uses the original root and another node that is
-				       // used to go through the tree
-    }
-
-    private static int countGrandsHelper(TreeNode original, TreeNode currentNode)
-    {
-	if (currentNode == null)
-	    return 0;
-	System.out.println(depth(original) + " - " + depth(currentNode));
-	System.out.println("original: " + original.getValue());
-	System.out.println("current: " + currentNode.getValue());
-	if (depth(original) - depth(currentNode) == 2)// found a grandparent
+	if (t == null)
 	{
-	    System.out.println("hi");
+	    System.out.println("null!");
+	    return 0;
+	}
+	if (height(t) > 2)// found a grandparent
+	{
+	    System.out.println("found a grandparent that has great-grandchildren!");
+	    return 1 + countGrands(t.getLeft()) + countGrands(t.getRight());
+	}
+	else if(height(t) == 2)
+	{
+	    System.out.println("Found a grandparent!");
 	    return 1;
 	}
-	// nothing is added until the algorithm finds a grandparent, so only the method
-	// itself is being called
-
-	return countGrandsHelper(original, currentNode.getLeft()) + countGrandsHelper(original, currentNode.getRight());
+	return 0;
     }
 
     public static int countOnlys(TreeNode t)
@@ -180,12 +176,13 @@ public class TolbertLiamPeriod1_BT
 	    return 1 + countOnlys(t.getLeft() == null ? t.getRight() : t.getLeft());
     }
 
-    public static int depth(TreeNode t)// supposed to calculate the depth of a node in the maze, but I have no idea how
-				       // to do it D:
+    public static int depth(TreeNode t)
     {
-
-    }// everything else in the program works tho
-
+	if(t == null)
+	    return 0;
+	return 1 + Math.max(depth(t.getLeft()), depth(t.getRight()));
+    }
+    
     public static int height(TreeNode t)
     {
 	if (t == null)
