@@ -1,0 +1,28 @@
+1) Every node has a color either red or black.
+
+2) Root of tree is always black.
+
+3) There are no two adjacent red nodes (A red node cannot have a red parent or red child).
+
+4) Every path from root to a NULL node has same number of black nodes
+
+black height: Number of noes on some path from any node to a leaf. Leaf nodes are also counted as black nodes
+Every RBT with n nodes has height less than or equal to 2logBASE2(n+1)
+https://www.geeksforgeeks.org/red-black-tree-set-1-introduction-2/
+A chain of 3 nodes is nodes is not possible in Red-Black Trees. 
+
+Following are NOT Red-Black Trees
+        30             30               30       
+       / \            /  \             /  \
+     20  NIL         20   NIL         20   NIL
+    / \             / \              /  \   
+  10  NIL          10  NIL          10  NIL  
+Violates          Violates        Violates
+Property 4.      Property 4       Property 3 
+
+Following are different possible Red-Black Trees with above 3 keys
+         20                           20
+       /   \                        /   \
+     10     30                    10     30
+    /  \   /  \                 /  \    /  \
+ NIL  NIL NIL NIL             NIL  NIL NIL NIL
