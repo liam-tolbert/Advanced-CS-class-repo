@@ -15,8 +15,11 @@ A chain of 3 nodes is not possible in Red-Black Trees.
 It is always good to insert a node as red and recolor it accordingly instead of trying to recolor it both ways when inserting it as black. 
 
 Rotations:
-Right rotation: In this case, "rotating" 11 down to become the right child of 4. 
-It inherits 4's previous right children/subtree as a left child (since 11's right child is already 15, 11's left child space is used)
+Right rotation: 
+11 is the parent
+11 becomes 4's right child (hence the name right rotation)
+11 retains its other child (left child, 15)
+4 still retains its right child. However, since 11 is 4's new right child, the previous left subtree of 4 has to go to 11's left child
 
 	11			4
       /   \		      /	 \
@@ -27,3 +30,16 @@ It inherits 4's previous right children/subtree as a left child (since 11's righ
     5  10		     5  10 
 
 Left rotation: 
+4 is the parent
+4 becomes 11's left child (hence the name left rotation)
+4 retains its other child, however (left child, 1) 
+11 still retains its right child. However, since 4 is 11's new left child, the previous left subtree of 11 has to go to 4's right child
+
+	4			11
+      /	 \		       / \
+     1   11  ------------>    4   15
+   	/  \                 / \
+       9   15               1  9
+      / \                     / \
+     5  10		     5  10
+
