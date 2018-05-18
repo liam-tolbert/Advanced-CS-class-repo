@@ -9,20 +9,21 @@
 black height: Number of noes on some path from any node to a leaf. Leaf nodes are also counted as black nodes
 Every RBT with n nodes has height less than or equal to 2logBASE2(n+1)
 https://www.geeksforgeeks.org/red-black-tree-set-1-introduction-2/
-A chain of 3 nodes is nodes is not possible in Red-Black Trees. 
 
-Following are NOT Red-Black Trees
-        30             30               30       
-       / \            /  \             /  \
-     20  NIL         20   NIL         20   NIL
-    / \             / \              /  \   
-  10  NIL          10  NIL          10  NIL  
-Violates          Violates        Violates
-Property 4.      Property 4       Property 3 
+A chain of 3 nodes is not possible in Red-Black Trees. 
 
-Following are different possible Red-Black Trees with above 3 keys
-         20                           20
-       /   \                        /   \
-     10     30                    10     30
-    /  \   /  \                 /  \    /  \
- NIL  NIL NIL NIL             NIL  NIL NIL NIL
+It is always good to insert a node as red and recolor it accordingly instead of trying to recolor it both ways when inserting it as black. 
+
+Rotations:
+Right rotation: In this case, "rotating" 11 down to become the right child of 4. 
+It inherits 4's previous right children/subtree as a left child (since 11's right child is already 15, 11's left child space is used)
+
+	11			4
+      /   \		      /	 \
+    4      15  --------->    1   11
+   / \				/  \
+  1   9			       9   15
+     / \		      / \
+    5  10		     5  10 
+
+Left rotation: 
