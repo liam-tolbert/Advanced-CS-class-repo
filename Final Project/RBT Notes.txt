@@ -12,9 +12,13 @@ https://www.geeksforgeeks.org/red-black-tree-set-1-introduction-2/
 
 A chain of 3 nodes is not possible in Red-Black Trees. 
 
+
+Recoloring: When you change the color of a node from red to black or vice versa
+
 It is always good to insert a node as red and recolor it accordingly instead of trying to recolor it both ways when inserting it as black. 
 
 Rotations:
+Pushes one subtree down a level and one subtree up by shifting subtrees sideways to different children of the input node. 
 Right rotation: 
 11 is the parent
 11 becomes 4's right child (hence the name right rotation)
@@ -43,3 +47,4 @@ Left rotation:
       / \                     / \
      5  10		     5  10
 
+Recoloring and rotations are how a red-black tree balances itself when trying to follow the rules

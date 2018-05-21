@@ -2,21 +2,26 @@ package com.Final.src.main;
 
 public class RedBlackNode
 {
+    public static final int BLACK = 1;
+    public static final int RED = 0;
+    
     private RedBlackNode left, right;
     private int color;
     private Integer value;
+    private int size; // subtree height
     
     public RedBlackNode(Integer value)
     {
-	this(value, null, null);
+	this(value, RED, null, null, 0);
     }
 
-    public RedBlackNode(Integer value, RedBlackNode leftChild, RedBlackNode rightChild)
+    public RedBlackNode(Integer value, int color, RedBlackNode leftChild, RedBlackNode rightChild, int size)
     {
-	this.setValue(value);
+	setValue(value);
 	setLeft(leftChild);
 	setRight(rightChild);
-	setColor(RedBlackTree.BLACK);
+	setColor(RED);
+	setSize(size);
     }
 
     public RedBlackNode getLeft()
@@ -57,5 +62,20 @@ public class RedBlackNode
     public void setColor(int color)
     {
 	this.color = color;
+    }
+    
+    public boolean equals(RedBlackNode other)
+    {
+	return other.getValue().equals(this.getValue());
+    }
+
+    public int getSize()
+    {
+	return size;
+    }
+
+    public void setSize(int size)
+    {
+	this.size = size;
     }
 }
