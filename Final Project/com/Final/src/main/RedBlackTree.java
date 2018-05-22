@@ -2,7 +2,7 @@ package com.Final.src.main;
 
 public class RedBlackTree
 {
-
+    // TODO: Please check logic on all of these methods in class!
     private RedBlackNode header, current, parent, grand;
 
     public RedBlackTree()
@@ -82,14 +82,66 @@ public class RedBlackTree
 	// going to use recursion here to insert nodes
 	if (compare < 0)
 	    node.setLeft(insert(value, node.getLeft()));
-	else if(compare > 0)
+	else if (compare > 0)
 	    node.setRight(insert(value, node.getRight()));
 	else
 	    node.setValue(value);
 	// fix up any skewed subtrees here
 	// ... code here...
-	
+
 	return node;
+    }
+
+    private RedBlackNode rotateLeft(RedBlackNode node)// All O(1)!
+    {
+	RedBlackNode left = node.getLeft();
+	node.setLeft(left.getRight());
+	left.setRight(node);
+	left.setColor(left.getRight().getColor());
+	left.getRight().setColor(RedBlackNode.RED);
+	left.setSize(node.getSize());
+	node.setSize(size(node.getLeft()) + size(node.getRight()) + 1);
+	return left;
+    }
+
+    private RedBlackNode rotateRight(RedBlackNode node)
+    {
+	RedBlackNode right = node.getRight();
+	node.setRight(right.getLeft());
+	right.setLeft(node);
+	right.setColor(right.getLeft().getColor());
+	right.getLeft().setColor(RedBlackNode.RED);
+	right.setSize(node.getSize());
+	node.setSize(size(node.getLeft()) + size(node.getRight()) + 1);
+	return right;
+    }
+
+    private void swapParentAndChildrenColors(RedBlackNode parent)
+    {
+	// color is either 0 (RED) or 1 (BLACK)
+	// by getting the absolute value of original colors minus one when swapping,
+	// we can swap colors by doing
+	// |0 (original color; RED) - 1| = |-1| = 1 (BLACK)
+	// or...
+	// |1 (original color; BLACK) - 1| = |0| = 0 (RED)
+	parent.setColor(Math.abs(parent.getColor() - 1));
+	parent.getLeft().setColor(Math.abs(parent.getLeft().getColor() - 1));
+	parent.getLeft().setColor(Math.abs(parent.getLeft().getColor() - 1));
+    }
+
+    private RedBlackNode balance(RedBlackNode root)
+    {
+	if (isRed(root.getLeft()) && isRed(root.getRight()))
+	    swapParentAndChildrenColors(root);
+	
+	if (isRed(root.getRight()) && isRed(root.getRight().getRight()))
+	    root = rotateLeft(root);
+	
+	if (isRed(root.getLeft()) && isRed(root.getLeft().getLeft()))
+	    root = rotateRight(root);
+	
+	root.setSize(size(root.getLeft()) + size(root.getRight()) + 1);
+	return root;
     }
 
 }
